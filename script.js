@@ -1,4 +1,5 @@
 let myLibrary = [];
+const container = document.querySelector(".container");
 
 function Book(title, author, pages, isRead) {
     this.title = title;
@@ -8,7 +9,6 @@ function Book(title, author, pages, isRead) {
     this.info = () => {
         let information = "";
         const readString = isRead ? "has been read" : "not read yet";
-
         information += title + " by " + author + ", " + pages + " pages, " + readString;
         return information;
     }
@@ -26,11 +26,14 @@ function addBookToLibrary() {
     myLibrary.push(book);
 }
 
-function displayEachBook(array) {
-    array.forEach(book => {
-        book.info();
+function displayEachBook(library) {
+    library.forEach(book => {
+        const header = document.createElement('h1');
+        header.textContent = book.info();
+        container.appendChild(header);
+        //console.log(book.info());
     });
 }
 
 addBookToLibrary();
-console.log(displayEachBook(myLibrary));
+displayEachBook(myLibrary);
