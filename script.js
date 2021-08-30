@@ -1,16 +1,19 @@
-let myLibrary = [];
+const myLibrary = [];
 const container = document.querySelector(".container");
+const addBookBtn = document.querySelector("#addBook");
 
-function Book(title, author, pages, isRead) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.isRead = isRead;
-    this.info = () => {
-        let information = "";
-        const readString = isRead ? "has been read" : "not read yet";
-        information += title + " by " + author + ", " + pages + " pages, " + readString;
-        return information;
+class Book {
+    constructor(title, author, pages, isRead) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.isRead = isRead;
+        this.info = () => {
+            let information = "";
+            const readString = isRead ? "has been read" : "not read yet";
+            information += title + " by " + author + ", " + pages + " pages, " + readString;
+            return information;
+        };
     }
 }
 
@@ -35,5 +38,6 @@ function displayEachBook(library) {
     });
 }
 
-addBookToLibrary();
-displayEachBook(myLibrary);
+addBookBtn.addEventListener("click", () => {
+    addBookToLibrary();
+})
